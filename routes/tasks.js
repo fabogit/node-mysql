@@ -45,7 +45,7 @@ router.delete("/tasks/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const result = await db.pool.query("DELETE FROM tasks WHERE id = ?", [id]);
-    res..status(204).send(result);
+    res.status(204).send(result);
   } catch (err) {
     throw err;
   }
