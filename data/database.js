@@ -14,3 +14,20 @@ const pool = mariadb.createPool({
 module.exports = Object.freeze({
   pool: pool,
 });
+
+
+/* 
+
+// mysql2 node driver
+const mysql = require("mysql2/promise");
+
+const pool = mysql.createPool({
+  host: "localhost",
+  database: "todo",
+  user: "root",
+  password: "mysql",
+});
+
+module.exports = pool;
+
+*/

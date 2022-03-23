@@ -6,7 +6,7 @@ const router = express.Router();
 // GET
 router.get("/tasks", async (req, res) => {
   try {
-    const result = await db.pool.query("select * from tasks");
+    const result = await db.pool.query("SELECT * FROM tasks");
     res.send(result);
   } catch (err) {
     throw err;
@@ -18,7 +18,7 @@ router.post("/tasks", async (req, res) => {
   let task = req.body;
   try {
     const result = await db.pool.query(
-      "insert into tasks (description) values (?)",
+      "INSERT INTO tasks (description) VALUES (?)",
       [task.description]
     );
     res.send(result);
@@ -31,7 +31,7 @@ router.put("/tasks", async (req, res) => {
   let task = req.body;
   try {
     const result = await db.pool.query(
-      "update tasks set description = ?, completed = ? where id = ?",
+      "UPDATE tasks SET description = ?, completed = ? WHERE id = ?",
       [task.description, task.completed, task.id]
     );
     res.send(result);
@@ -43,7 +43,7 @@ router.put("/tasks", async (req, res) => {
 router.delete("/tasks", async (req, res) => {
   let id = req.query.id;
   try {
-    const result = await db.pool.query("delete from tasks where id = ?", [id]);
+    const result = await db.pool.query("DELETE FROM tasks WHERE id = ?", [id]);
     res.send(result);
   } catch (err) {
     throw err;
