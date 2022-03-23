@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/tasks", async (req, res) => {
   try {
     const result = await db.pool.query("SELECT * FROM tasks");
-    res.send(result);
+    res.status(200).send(result);
   } catch (err) {
     throw err;
   }
@@ -15,36 +15,37 @@ router.get("/tasks", async (req, res) => {
 
 // POST
 router.post("/tasks", async (req, res) => {
-  let task = req.body;
+  const task = req.body;
   try {
     const result = await db.pool.query(
       "INSERT INTO tasks (description) VALUES (?)",
       [task.description]
     );
-    res.send(result);
+    res.status(201).send(result);
   } catch (err) {
     throw err;
   }
 });
 
-router.put("/tasks", async (req, res) => {
-  let task = req.body;
+router.put("/tasks/:id", async (req, res) => {
+  const id = req.params.id
+  const task = req.body;
   try {
     const result = await db.pool.query(
       "UPDATE tasks SET description = ?, completed = ? WHERE id = ?",
-      [task.description, task.completed, task.id]
+      [task.description, task.completed, id]
     );
-    res.send(result);
+    res.status(200).send(result);
   } catch (err) {
     throw err;
   }
 });
 
-router.delete("/tasks", async (req, res) => {
-  let id = req.query.id;
+router.delete("/tasks/:id", async (req, res) => {
+  const id = req.params.id;
   try {
     const result = await db.pool.query("DELETE FROM tasks WHERE id = ?", [id]);
-    res.send(result);
+    res..status(204).send(result);
   } catch (err) {
     throw err;
   }
