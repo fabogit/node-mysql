@@ -10,11 +10,11 @@ const { host, port, user, password, database } = config.database;
 
 // Create a connection pool
 const pool = mariadb.createPool({
-  host: host,
-  port: port,
-  user: user,
-  password: password,
-  database: database,
+	host: host,
+	port: port,
+	user: user,
+	password: password,
+	database: database,
 });
 pool.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
 
