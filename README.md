@@ -11,7 +11,6 @@ DB_PASSWORD="mysql"
 DB_NAME="todo"
 ```
 
-- sequelize
 - automate testing crud
 - add f/end
 - docker
